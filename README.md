@@ -8,13 +8,14 @@ A library of Agent Skills for working with [Cadence](https://cadenceworkflow.io/
 
 This repository is a collection of Cadence-focused **Agent Skills** — structured bundles of instructions, references, and worked examples that teach coding agents how to build, debug, and operate Cadence applications correctly.
 
-Every skill in `skills/` is a self-contained folder with a `SKILL.md` entry point (markdown with YAML frontmatter) and a `knowledge/` folder of supporting material. Any coding agent that can load skills from a directory can use them.
+Every skill in `skills/` is a self-contained folder with a `SKILL.md` entry point (markdown with YAML frontmatter) and supporting material alongside it (`knowledge/` reference files, or curriculum data in the case of `cadence-tutor`). Any coding agent that can load skills from a directory can use them.
 
 ## Available skills
 
 | Skill | Description | SDK coverage |
 | --- | --- | --- |
 | [`cadence-developer`](./skills/cadence-developer) | Build, debug, and manage Cadence workflows, activities, and workers. | Go, Java, Python (Python SDK is alpha) |
+| [`cadence-tutor`](./skills/cadence-tutor) | Interactive daily curriculum that teaches a human developer Cadence internals from real source: one 10-15 minute lesson, quiz, and Go exercise per day. | Server and Go SDK internals |
 
 ### Roadmap
 
@@ -53,13 +54,18 @@ Consult your agent's documentation for the exact skills directory it watches.
 ```
 ai-skills/
 ├── skills/                       # individual Agent Skills, one folder each
-│   └── cadence-developer/
+│   ├── cadence-developer/
 │       ├── SKILL.md              # entry point with YAML frontmatter
 │       └── knowledge/            # supporting reference material
 │           ├── shared/           # language-agnostic Cadence concepts
 │           ├── go/               # Go SDK specifics
 │           ├── java/             # Java SDK specifics
 │           └── python/           # Python SDK specifics (alpha)
+│   └── cadence-tutor/
+│       ├── SKILL.md              # the curriculum engine
+│       ├── tracks/               # per-topic curricula (data files)
+│       ├── references/           # lesson formats and drafting brief templates
+│       └── scripts/              # progress ledger (stdlib-only Python)
 ├── AGENTS.md                     # rules for agents working IN this repo
 ├── CONTRIBUTING.md               # how to add or update a skill
 ├── LICENSE                       # Apache 2.0
